@@ -1,0 +1,17 @@
+{
+  "name": "hmac-express",
+  "version": "1.0.2",
+  "description": "A middleware to use hmac with express",
+  "main": "index.js",
+  "author": "Gautier TANGUY <gautier.tanguy@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AsoSunag/hmac-express.git"
+  },
+  "keywords": [
+    "hmac",
+    "express"
+  ],
+  "homepage": "https://github.com/AsoSunag/hmac-express"
+}
