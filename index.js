@@ -1,9 +1,9 @@
 var crypto = require("crypto")
 
-exports.middleware = function (algorithm, key, token, opts) {
+module.exports = function (algorithm, key, token, opts) {
 	var algorithm = algorithm
 	var key = key
-	var token = toke
+	var token = token
 	var encoding =  "hex"
 	if (opts) {
 		encoding = opts.encoding || "hex"
