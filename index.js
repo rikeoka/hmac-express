@@ -10,7 +10,7 @@ module.exports = function (algorithm, key, token, opts) {
 	}
 
 	return function(request, response, next) {
-		var hmac = crypto.createHmac(algorithm, token)
+		var hmac = crypto.createHmac(algorithm, key)
 		if (request.body)
 			hmac.update(JSON.stringify(request.body))
 
