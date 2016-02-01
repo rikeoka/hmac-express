@@ -9,7 +9,7 @@ A simple middleware to be used with express. It checks if the HMAC digest of the
 This middleware requires three parameters when it is created. The first two are the algorithm and the secret key that will be used by the createHmac function of the crypto library. The third one is the name of the query parameter containing the HMAC digest to check.
 
 ``` javascript
-var middleware = require("hmac-express")("sha-256", "secret", "token")
+var middleware = require("hmac-express")("sha256", "secret", "token")
 
 app.get("/", middleware, function(request, response) {
 	response.send("Hello")
