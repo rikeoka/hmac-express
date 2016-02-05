@@ -1,6 +1,6 @@
 # hmac-express
 
-A simple middleware to be used with express. It checks if the HMAC digest of the body (c) is equal to the value of the one provided through the query string.
+A simple middleware to be used with express. It checks if the HMAC digest of the body or a header is equal to the value of the one provided through the query string.
 
 	npm install hmac-express
 
@@ -17,11 +17,12 @@ app.get("/", middleware, function(request, response) {
 
 ```
 
-By default the encoding of the digest is in hex but it can be changed by passing a fourth parameter. This parameter is a JSON object and the key to change the encoding is "encoding" (This value should be one of the value accepted by the method hmac.digest of the crypto library).
+By default the encoding of the digest is in hex but it can be changed by passing a fourth parameter. This parameter is a JSON object and the key to change the encoding is "encoding" (This value should be one of the value accepted by the method hmac.digest of the crypto library). To use the HMAC digest of a header, specify its name in the options JSON object.
 
 ``` javascript
 var opts = {
-	encoding = "base64"
+	encoding = "base64",
+	header = "timestamp"
 }
 var middleware = require("hmac-express")("sha256", "secret", "token", opts)
 
