@@ -7,8 +7,8 @@ module.exports = function (algorithm, key, token, opts) {
 	var encoding =  "hex"
 	var header
 	if (opts) {
-		encoding = opts.encoding || "hex",
-		header = opts.header,
+		encoding = opts.encoding || "hex"
+		header = opts.header
 	}
 
 	return function(request, response, next) {
