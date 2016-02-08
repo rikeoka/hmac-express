@@ -1,6 +1,6 @@
 {
   "name": "hmac-express",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A middleware to use hmac with express",
   "main": "index.js",
   "author": "Gautier TANGUY <gautier.tanguy@gmail.com>",
