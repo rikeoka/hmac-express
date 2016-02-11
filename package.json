@@ -13,5 +13,11 @@
     "hmac",
     "express"
   ],
-  "homepage": "https://github.com/AsoSunag/hmac-express"
+  "homepage": "https://github.com/AsoSunag/hmac-express",
+  "dependencies": {
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
 }
