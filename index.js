@@ -19,7 +19,14 @@ module.exports = function (algorithm, key, token, opts) {
 			hmac.update(JSON.stringify(request.body))
 		}
 
-		if (!request.query[token] || request.query[token] != hmac.digest(encoding)) return response.sendStatus(401)
+		if (!request.query[token]) return response.sendStatus(401)
+			
+		var receivedHmac = crypto.createHmac(algorithm, key)
+		receivedHmac.update(request.query[token])
+		var computedHmac = crypto.createHmac(algorithm, key)
+		computedHmac.update(hmac.digest(encoding))
+
+		if (receivedHmac.digest(encoding) != computedHmac.digest(encoding)) return response.sendStatus(401)
 
 		next()
 	}
