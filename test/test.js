@@ -78,10 +78,10 @@ describe("hmac-express", function() {
 		})
 	})
 
-  it("should pass with an empty JSON body with header token", function(done) {
-    var opts = {
-        header: "HMAC"
-    }
+	it("should pass with an empty JSON body with header token", function(done) {
+		var opts = {
+			header: "HMAC"
+		}
 		var middleware = hmacExpress("sha256", "secret", "token", opts)
 		var hmac = crypto.createHmac("sha256", "secret")
 		var body = {}
@@ -104,9 +104,9 @@ describe("hmac-express", function() {
 	})
 
 	it("should pass with a JSON body with header token", function(done) {
-    var opts = {
-        header: "HMAC"
-    }
+		var opts = {
+			header: "HMAC"
+		}
 		var middleware = hmacExpress("sha256", "secret", "token", opts)
 		var hmac = crypto.createHmac("sha256", "secret")
 		var body = {
@@ -134,10 +134,10 @@ describe("hmac-express", function() {
 	})
 
 	it("should not pass if the hmac of the received body is different with header token", function(done) {
-    var opts = {
-        header: "HMAC"
-    }
-    var middleware = hmacExpress("sha256", "secret", "token", opts)
+		var opts = {
+			header: "HMAC"
+		}
+		var middleware = hmacExpress("sha256", "secret", "token", opts)
 		var body = {
 			"key1": "value1",
 			"Key2": {
@@ -166,11 +166,11 @@ describe("hmac-express", function() {
 	it("should pass with the header version and a different encoding", function(done) {
 		var opts = {
 			encoding: "base64",
-    		header: "HMAC"
+				header: "HMAC"
 		}
 		var middleware = hmacExpress("sha256", "secret", "token", opts)
 		var hmac = crypto.createHmac("sha256", "secret")
-    var body = {
+		var body = {
 			"key1": "value1",
 			"Key2": {
 				"key21": "value21",
@@ -180,8 +180,8 @@ describe("hmac-express", function() {
 		hmac.update(JSON.stringify(body))
 
 		var request = {
-      "body": body,
-      "headers": {
+			"body": body,
+			"headers": {
 				"HMAC": hmac.digest("base64")
 			}
 		}

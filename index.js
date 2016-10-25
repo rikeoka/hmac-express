@@ -21,18 +21,18 @@ module.exports = function (algorithm, key, token, opts) {
 		if (!(header && request.headers[header]) && !request.query[token]) return response.sendStatus(401)
 
 		var receivedHmac = crypto.createHmac(algorithm, key)
-    if (header && request.headers[header]) {
+		if (header && request.headers[header]) {
 			receivedHmac.update(request.headers[header])
 		} else {
-      receivedHmac.update(request.query[token])
-    }
+			receivedHmac.update(request.query[token])
+		}
 		var computedHmac = crypto.createHmac(algorithm, key)
 		computedHmac.update(hmac.digest(encoding))
 
-		if (bufferEq(new Buffer(receivedHmac.digest(encoding)), new Buffer(computedHmac.digest(encoding))) {
-      next()
-    } else {
-      return response.sendStatus(401)
-    }
+		if (bufferEq(new Buffer(receivedHmac.digest(encoding)), new Buffer(computedHmac.digest(encoding)))) {
+			next()
+		} else {
+			return response.sendStatus(401)
+		}
 	}
 }
