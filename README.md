@@ -21,8 +21,8 @@ By default the encoding of the digest is in hex but it can be changed by passing
 
 ``` javascript
 var opts = {
-	encoding = "base64",
-	header = "timestamp"
+	encoding : "base64",
+	header : "timestamp"
 }
 var middleware = require("hmac-express")("sha256", "secret", "token", opts)
 
