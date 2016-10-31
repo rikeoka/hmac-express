@@ -7,15 +7,19 @@ module.exports = function (algorithm, key, token, opts) {
 	var token = token
 	var encoding =  "hex"
 	var header
+	var raw = false
 	if (opts) {
 		encoding = opts.encoding || "hex"
 		header = opts.header
+		raw = opts.raw
 	}
 
 	return function(request, response, next) {
 		var hmac = crypto.createHmac(algorithm, key)
-		if (request.body) {
+		if (request.body && !raw) {
 			hmac.update(JSON.stringify(request.body))
+		} else if (request.body && raw === true) {
+			hmac.update(request.body)
 		}
 
 		if (!(header && request.headers[header]) && !request.query[token]) return response.sendStatus(401)

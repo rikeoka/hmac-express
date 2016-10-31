@@ -133,6 +133,37 @@ describe("hmac-express", function() {
 		return middleware(request, response, done)
 	})
 
+	it("should pass with a raw body with header token", function(done) {
+		var opts = {
+			header: "HMAC",
+			raw: true,
+		}
+		var middleware = hmacExpress("sha256", "secret", "token", opts)
+		var hmac = crypto.createHmac("sha256", "secret")
+		var body = JSON.stringify({
+			"key1": "value1",
+			"Key2": {
+				"key21": "value21",
+				"key22": "value22",
+			}
+		})
+		hmac.update(body)
+
+		var request = {
+			"body": body,
+			"headers": {
+				"HMAC": hmac.digest("hex")
+			}
+		}
+
+		var response = {
+			sendStatus: function(code) {
+				return done(new Error("Fail with the wrong error code"))
+			}
+		}
+		return middleware(request, response, done)
+	})
+
 	it("should not pass if the hmac of the received body is different with header token", function(done) {
 		var opts = {
 			header: "HMAC"

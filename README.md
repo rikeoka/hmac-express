@@ -28,6 +28,20 @@ var middleware = require("hmac-express")("sha256", "secret", "token", opts)
 
 ```
 
+By default the request.body is JSON.stringified but it can be changed by passing a fourth parameter.  This parameter is
+a JSON object and the key to change the stringify behavior is "raw".  When true and request.body will not JSON.stringify
+the request body.
+
+``` javascript
+var opts = {
+	encoding : "base64",
+	header : "timestamp",
+	raw : true
+}
+var middleware = require("hmac-express")("sha256", "secret", "token", opts)
+
+```
+
 # License
 Copyright (c) 2016 Gautier TANGUY
 
